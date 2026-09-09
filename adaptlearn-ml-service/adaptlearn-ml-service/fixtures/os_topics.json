@@ -1,0 +1,88 @@
+{
+  "subject_id": "os-sem3-aiml",
+  "subject_name": "Operating Systems",
+  "branch": "AIML",
+  "semester": 3,
+  "topics": [
+    {
+      "topic_id": "os-t01",
+      "topic_name": "Introduction to Operating Systems & Process Concept",
+      "order": 1,
+      "prior_exam_frequency": 6,
+      "syllabus_weightage": 0.70,
+      "raw_notes_text": "An operating system is defined as system software that manages computer hardware and software resources and provides common services for computer programs. It acts as an intermediary between the user and the hardware. A process is defined as a program in execution, and it is more than just program code, since it also includes the current activity represented by the value of the program counter and the contents of the processor's registers. A program is a passive entity stored on disk, whereas a process is an active entity. Every process is represented in the operating system by a Process Control Block, commonly called a PCB, which stores the process state, program counter, CPU registers, memory management information, and accounting information. As a process executes, it changes state. A process may be in one of five states: new, ready, running, waiting, or terminated. The new state means the process is being created. The ready state means the process is waiting to be assigned to a processor. The running state means instructions are being executed. The waiting state means the process is waiting for some event to occur, such as I/O completion. The terminated state means the process has finished execution. Understanding process states is foundational to almost every later topic in operating systems, including scheduling, synchronization, and deadlocks."
+    },
+    {
+      "topic_id": "os-t02",
+      "topic_name": "Process Scheduling Algorithms",
+      "order": 2,
+      "prior_exam_frequency": 9,
+      "syllabus_weightage": 0.90,
+      "raw_notes_text": "Process scheduling is defined as the activity of the process manager that handles the removal of a running process from the CPU and the selection of another process on the basis of a particular strategy. First-Come-First-Served, abbreviated FCFS, is the simplest scheduling algorithm and executes processes strictly in the order they arrive in the ready queue, which can lead to the convoy effect when a long process delays all others. Shortest Job First, abbreviated SJF, selects the process with the smallest estimated execution time next, and it is optimal for minimizing average waiting time but requires knowledge of burst time in advance. Priority Scheduling assigns a priority number to each process and the CPU is allocated to the process with the highest priority, but it can suffer from starvation, which is typically solved using aging. Round Robin scheduling is defined as a preemptive algorithm where each process is assigned a fixed time slice called a quantum, and it is especially important for time-sharing systems because it ensures fairness. Turnaround time is defined as completion time minus arrival time, and waiting time is defined as turnaround time minus burst time. Multilevel queue scheduling and multilevel feedback queue scheduling are advanced variants frequently asked in university exams because they combine several of the basic algorithms."
+    },
+    {
+      "topic_id": "os-t03",
+      "topic_name": "Threads and Multithreading Models",
+      "order": 3,
+      "prior_exam_frequency": 5,
+      "syllabus_weightage": 0.60,
+      "raw_notes_text": "A thread is defined as a basic unit of CPU utilization, and it comprises a thread ID, a program counter, a register set, and a stack. A traditional heavyweight process has a single thread of control, whereas a multithreaded process has multiple threads within the same process, sharing the same code section, data section, and operating system resources such as open files and signals. User threads are supported above the kernel and are managed without kernel support, offering fast context switching but blocking the entire process if one thread makes a blocking system call. Kernel threads are supported directly by the operating system, offering true parallelism on multiprocessor systems at the cost of higher overhead. Three common multithreading models connect user threads to kernel threads: the many-to-one model, the one-to-one model, and the many-to-many model. The many-to-one model maps many user-level threads to one kernel thread, which is efficient but limits concurrency since the entire process blocks if one thread makes a blocking call. The one-to-one model maps each user thread to a kernel thread, providing more concurrency at higher overhead. The many-to-many model multiplexes many user threads to a smaller or equal number of kernel threads, combining the benefits of both prior models."
+    },
+    {
+      "topic_id": "os-t04",
+      "topic_name": "Process Synchronization & Critical Section Problem",
+      "order": 4,
+      "prior_exam_frequency": 8,
+      "syllabus_weightage": 0.85,
+      "raw_notes_text": "A race condition is defined as a situation where several processes access and manipulate shared data concurrently, and the outcome of the execution depends on the particular order in which the access takes place. The critical section is defined as a segment of code in which a process may be changing common variables, updating a shared table, or writing a file, and only one process should be allowed to execute in its critical section at any given time. A correct solution to the critical section problem must satisfy three requirements: mutual exclusion, progress, and bounded waiting. Mutual exclusion means that if a process is executing in its critical section, no other process can be executing in its critical section. Peterson's solution is a classic software-based algorithm that solves the critical section problem for two processes using two shared variables, a turn variable and a boolean flag array. A mutex lock is defined as a locking mechanism used to synchronize access to a resource, and a process must acquire the lock before entering a critical section and release it after leaving. A semaphore is defined as an integer variable that is accessed only through two atomic operations, wait and signal, and semaphores can be counting semaphores or binary semaphores, the latter being functionally equivalent to mutex locks."
+    },
+    {
+      "topic_id": "os-t05",
+      "topic_name": "Classical Synchronization Problems",
+      "order": 5,
+      "prior_exam_frequency": 7,
+      "syllabus_weightage": 0.75,
+      "raw_notes_text": "The bounded-buffer problem, commonly called the producer-consumer problem, is defined as a synchronization scenario where a producer process produces information consumed by a consumer process, and both share a fixed-size buffer that must never be written to when full nor read from when empty. It is typically solved using three semaphores: an empty count, a full count, and a mutex for the buffer itself. The readers-writers problem is defined as a synchronization scenario where a data set is shared among several concurrent processes, some of which only read the data, called readers, and some of which update the data, called writers, and multiple readers may read simultaneously but a writer requires exclusive access. The first readers-writers problem gives priority to readers, and the second readers-writers problem gives priority to writers, both of which can lead to starvation of the other group. The dining philosophers problem is defined as a classic synchronization problem illustrating deadlock and starvation, where five philosophers sit at a table with five forks and each philosopher needs both adjacent forks to eat, and naive solutions can deadlock if every philosopher picks up the left fork simultaneously. These classical problems are frequently examined because they combine mutual exclusion, deadlock avoidance, and starvation prevention in a single scenario."
+    },
+    {
+      "topic_id": "os-t06",
+      "topic_name": "Deadlocks: Detection, Prevention & Avoidance",
+      "order": 6,
+      "prior_exam_frequency": 9,
+      "syllabus_weightage": 0.85,
+      "raw_notes_text": "A deadlock is defined as a situation where a set of processes are blocked because each process is holding a resource and waiting for another resource acquired by some other process in the set. Four necessary conditions must hold simultaneously for a deadlock to occur: mutual exclusion, hold and wait, no preemption, and circular wait. Mutual exclusion means at least one resource must be held in a non-shareable mode. Hold and wait means a process holding at least one resource is waiting to acquire additional resources held by other processes. No preemption means resources cannot be forcibly removed from a process holding them. Circular wait means a set of processes are waiting for each other in a circular chain. Deadlock prevention works by ensuring at least one of the four necessary conditions cannot hold, while deadlock avoidance requires the operating system to be given additional information in advance about which resources a process will request, most famously implemented through the Banker's Algorithm. The Banker's Algorithm is defined as a resource allocation and deadlock avoidance algorithm that tests for safety by simulating the allocation of predetermined maximum possible amounts of resources, and it determines whether the system is in a safe state before granting a request. Deadlock detection allows deadlocks to occur and uses a resource allocation graph or wait-for graph to detect them, followed by recovery through process termination or resource preemption."
+    },
+    {
+      "topic_id": "os-t07",
+      "topic_name": "Memory Management: Paging & Segmentation",
+      "order": 7,
+      "prior_exam_frequency": 8,
+      "syllabus_weightage": 0.80,
+      "raw_notes_text": "Memory management is defined as the functionality of an operating system that handles or manages primary memory, moving processes back and forth between main memory and disk during execution. Contiguous memory allocation is defined as a method where each process is contained in a single contiguous section of memory, which can lead to external fragmentation as processes are loaded and removed. Paging is defined as a memory management scheme that eliminates the need for contiguous allocation of physical memory by dividing physical memory into fixed-size blocks called frames and logical memory into blocks of the same size called pages. A page table is defined as a data structure used to store the mapping between logical addresses and physical addresses, and every operating system has its own method of storing the page table, most commonly using a page table base register. Segmentation is defined as a memory management scheme that supports the user's view of memory by dividing a program into variable-sized segments such as code, stack, and heap, each with its own base and limit. Paging suffers from internal fragmentation because the last frame allocated to a process may not be completely full, whereas segmentation suffers from external fragmentation because variable-sized segments leave scattered free memory holes. Many modern systems combine both techniques into segmented paging."
+    },
+    {
+      "topic_id": "os-t08",
+      "topic_name": "Virtual Memory & Page Replacement Algorithms",
+      "order": 8,
+      "prior_exam_frequency": 9,
+      "syllabus_weightage": 0.85,
+      "raw_notes_text": "Virtual memory is defined as a technique that allows the execution of processes that are not completely in main memory, giving the illusion of a very large main memory to the programmer. Demand paging is defined as a technique where a page is brought into memory only when it is needed, reducing memory usage and I/O overhead, and it relies on lazy swapping. A page fault is defined as an event that occurs when a process accesses a page that is not currently in main memory, causing the operating system to bring the required page in from secondary storage. The First-In-First-Out page replacement algorithm, abbreviated FIFO, replaces the page that has been in memory the longest, and it can suffer from Belady's Anomaly, where increasing the number of frames results in more page faults. The Least Recently Used algorithm, abbreviated LRU, replaces the page that has not been used for the longest period of time, and it approximates optimal behavior well but is expensive to implement exactly. The Optimal page replacement algorithm replaces the page that will not be used for the longest period of time in the future, and while it has the lowest possible page-fault rate, it is not implementable in practice since it requires future knowledge, so it is used mainly as a benchmark. Thrashing is defined as a high paging activity where a process spends more time paging than executing, typically caused by an insufficient number of frames."
+    },
+    {
+      "topic_id": "os-t09",
+      "topic_name": "File Systems & File Allocation Methods",
+      "order": 9,
+      "prior_exam_frequency": 6,
+      "syllabus_weightage": 0.65,
+      "raw_notes_text": "A file is defined as a named collection of related information recorded on secondary storage, and every file has attributes such as name, identifier, type, location, size, and protection information. A directory is defined as a structure that contains information about files, and common directory structures include single-level, two-level, tree-structured, and acyclic-graph directories. Contiguous allocation is defined as a file allocation method where each file occupies a set of contiguous blocks on the disk, offering excellent read performance but suffering from external fragmentation and difficulty growing files. Linked allocation is defined as a file allocation method where each file is a linked list of disk blocks scattered anywhere on the disk, eliminating external fragmentation but suffering from slow direct access since blocks must be traversed sequentially, and it is vulnerable to pointer corruption. Indexed allocation is defined as a file allocation method that brings all pointers together into a single block called an index block, providing direct access without external fragmentation, and multilevel or combined schemes are used for very large files. Free space management tracks free disk blocks using techniques such as a bitmap vector, a linked list of free blocks, grouping, or counting, and the choice affects allocation speed and disk utilization."
+    },
+    {
+      "topic_id": "os-t10",
+      "topic_name": "Disk Scheduling Algorithms",
+      "order": 10,
+      "prior_exam_frequency": 7,
+      "syllabus_weightage": 0.70,
+      "raw_notes_text": "Disk scheduling is defined as the method operating systems use to schedule the input and output requests submitted for a disk, with the primary goal of minimizing total seek time and maximizing throughput. The First-Come-First-Served disk scheduling algorithm services requests in the order they arrive in the queue, which is fair but can result in poor performance if requests are scattered across the disk. The Shortest Seek Time First algorithm, abbreviated SSTF, selects the request with the minimum seek time from the current head position, giving better performance than FCFS but risking starvation of requests far from the current head position. The SCAN algorithm, also called the elevator algorithm, moves the disk arm in one direction servicing requests until it reaches the end of the disk, then reverses direction, providing more uniform wait times. The Circular SCAN algorithm, abbreviated C-SCAN, moves the head from one end to the other servicing requests, then immediately returns to the beginning without servicing requests on the return trip, providing a more uniform wait time than plain SCAN. The LOOK and C-LOOK algorithms are variants of SCAN and C-SCAN that only travel as far as the last request in each direction rather than all the way to the end of the disk, reducing unnecessary movement. Seek time optimization directly impacts overall system I/O performance and is a frequently tested numerical problem type."
+    }
+  ]
+}

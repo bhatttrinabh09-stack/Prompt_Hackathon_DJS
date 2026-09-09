@@ -1,0 +1,22 @@
+# Core service (required to run `uvicorn main:app --reload`)
+fastapi>=0.111,<1.0
+uvicorn[standard]>=0.29,<1.0
+pydantic>=2.6,<3.0
+scikit-learn>=1.4,<2.0
+numpy>=1.26,<3.0
+
+# --- Optional extras (NOT required for the prototype to run) ---
+#
+# Only needed if you wire in a real LLM provider behind call_llm()
+# (script_gen.py) instead of relying on the deterministic template
+# fallback. Uncomment whichever you configure via env vars
+# (ANTHROPIC_API_KEY / OPENAI_API_KEY):
+#
+# anthropic>=0.34
+# openai>=1.40
+#
+# Only needed if you switch summarizer.py from extractive condense() to
+# summarizer.abstractive_condense() (HuggingFace pipeline):
+#
+# transformers>=4.42
+# torch>=2.3
